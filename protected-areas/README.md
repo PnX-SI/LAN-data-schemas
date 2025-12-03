@@ -5,3 +5,4 @@ It is based on LAN project workshops with European partners and an alalysis of e
 To check : 
 - https://dbpedia.org/ontology/ProtectedArea
 - https://schema.org/AdministrativeArea
+- https://developers.google.com/earth-engine/datasets/catalog/WCMC_WDPA_current_points?hl=fr#table-schema
