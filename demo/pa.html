@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Protected Areas — Leaflet Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Modern UI: clean, responsive, smooth transitions -->
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --sidebar-bg: #ffffff;
+      --border: #e5e7eb;
+      --text: #1f2937;
+      --text-light: #6b7280;
+      --accent: #2563eb;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: var(--bg);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #map { width: 100%; height: 100%; }
+
+    /* Sidebar styling */
+    .sidebar {
+      background: var(--sidebar-bg);
+      border-left: 1px solid var(--border);
+      padding: 18px;
+      overflow-y: auto;
+      box-shadow: -2px 0 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .prop-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    .prop-table td {
+      padding: 8px 6px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      font-size: 0.95rem;
+    }
+
+    .prop-key {
+      font-weight: 600;
+      color: var(--text-light);
+      width: 36%;
+    }
+
+    a.external {
+      word-break: break-all;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a.external:hover {
+      text-decoration: underline;
+    }
+
+    img.wikidata-photo {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Mobile: sidebar becomes sliding panel */
+    @media (max-width: 900px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 310px;
+    max-width: 90%;
+    transform: translateX(100%);
+    z-index: 5000;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* NEW — move the toggle button so it does not overlap Leaflet zoom */
+  #sidebarToggle {
+    position: fixed;
+    top: 80px;          /* below the zoom control */
+    right: 12px;        /* aligned right */
+    z-index: 6000;
+    background: white;
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+    /* smooth fade-in / out */
+    transition: opacity 0.2s ease;
+  }
+}
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <button id="sidebarToggle" style="display:none;">☰ Info</button>
+    <div id="map"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <p>Select a protected area on the map.</p>
+    </aside>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const GEOJSON_FILE = 'LAN-PA.geojson';
+
+    /* --- Sidebar toggle for mobile --- */
+    const sidebar = document.getElementById("sidebar");
+    const sidebarToggle = document.getElementById("sidebarToggle");
+
+    function updateSidebarMode() {
+      if (window.innerWidth <= 900) {
+        sidebarToggle.style.display = "block";
+      } else {
+        sidebarToggle.style.display = "none";
+        sidebar.classList.remove("open");
+      }
+    }
+    updateSidebarMode();
+    window.addEventListener("resize", updateSidebarMode);
+
+    sidebarToggle.onclick = () => {
+      sidebar.classList.toggle("open");
+    };
+
+    /* --- MAP --- */
+    const map = L.map('map').setView([46.5, 2.5], 6);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    function styleFeature() {
+      return { color: '#2563eb', weight: 2, opacity: 0.9, fillOpacity: 0.3 };
+    }
+
+    function escapeHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    function buildOsmUrl(id){ if(!id)return null; const m=(String(id).match(/(\d+)/)||[])[0]; return m?`https://www.openstreetmap.org/relation/${m}`:null; }
+    function buildWikidataUrl(q){ if(!q)return null; const m=String(q).match(/Q\d+/i); return m?`https://www.wikidata.org/wiki/${m[0].toUpperCase()}`:null; }
+
+    async function fetchWikidataImage(qid){
+      if(!qid) return null;
+      const q = (String(qid).match(/Q\d+/i)||[])[0];
+      if(!q) return null;
+      const url = `https://www.wikidata.org/wiki/Special:EntityData/${q}.json`;
+      try{
+        const data = await fetch(url).then(r=>r.json());
+        const entity = data.entities[q];
+        if(!entity || !entity.claims?.P18) return null;
+        const filename = entity.claims.P18[0].mainsnak.datavalue.value;
+        return `https://commons.wikimedia.org/wiki/Special:FilePath/${filename.replace(/ /g,'_')}`;
+      } catch{ return null; }
+    }
+
+    async function fetchWikipediaUrl(qid){
+      if(!qid) return null;
+      const q = (String(qid).match(/Q\d+/i)||[])[0];
+      if(!q) return null;
+      try{
+        const url = `https://www.wikidata.org/wiki/Special:EntityData/${q}.json`;
+        const data = await fetch(url).then(r=>r.json());
+        const sitelinks = data.entities[q].sitelinks;
+        return sitelinks?.frwiki ? `https://fr.wikipedia.org/wiki/${encodeURIComponent(sitelinks.frwiki.title)}` : null;
+      } catch{ return null; }
+    }
+
+    async function showProperties(props) {
+      let name = props.name || '(no name)';
+      let wikidataId = props['wikidata-id'];
+      let logoUrl = props['url-logo'];
+
+      // Fetch external assets
+      let photoUrl = await fetchWikidataImage(wikidataId).catch(()=>null);
+      let wikipediaUrl = await fetchWikipediaUrl(wikidataId).catch(()=>null);
+
+      let html = '';
+
+      if (photoUrl) {
+        html += `<img class="wikidata-photo" src="${escapeHtml(photoUrl)}" alt="Photo">`;
+      }
+
+      html += `<h2><strong>${escapeHtml(name)}</strong></h2>`;
+
+      html += '<table class="prop-table">';
+      for (let k in props) {
+        if (!props.hasOwnProperty(k)) continue;
+        let val = props[k];
+        let cell = '';
+
+        if (val === null || val === undefined) cell = '';
+        else if (k === 'osm-id') {
+          let u = buildOsmUrl(val);
+          cell = u ? `<a class="external" target="_blank" href="${escapeHtml(u)}">${escapeHtml(val)}</a>` : escapeHtml(val);
+        } else if (k === 'wikidata-id') {
+          let u2 = buildWikidataUrl(val);
+          cell = u2 ? `<a class="external" target="_blank" href="${escapeHtml(u2)}">${escapeHtml(val)}</a>` : escapeHtml(val);
+        } else if (k === 'wdpa-id') {
+          let u3 = 'https://www.protectedplanet.net/' + encodeURIComponent(String(val));
+          cell = `<a class="external" target="_blank" href="${escapeHtml(u3)}">${escapeHtml(val)}</a>`;
+        } else if (typeof val === 'string' && /^https?:\/\//i.test(val)) {
+          cell = `<a class="external" target="_blank" href="${escapeHtml(val)}">${escapeHtml(val)}</a>`;
+        } else {
+          cell = escapeHtml(val);
+        }
+
+        html += `<tr><td class="prop-key">${escapeHtml(k)}</td><td>${cell}</td></tr>`;
+      }
+      html += '</table>';
+
+      if (logoUrl) {
+        html += `<div style="margin-top:10px;"><img src="${escapeHtml(logoUrl)}" style="max-width:100%; border-radius:8px;"></div>`;
+      }
+
+      if (wikipediaUrl) {
+        html += `<p><a class="external" target="_blank" href="${escapeHtml(wikipediaUrl)}">Wikipedia (FR)</a></p>`;
+      }
+
+      sidebar.innerHTML = html;
+
+      // auto-open sidebar on mobile when selecting an area
+      if (window.innerWidth <= 900) {
+        sidebar.classList.add("open");
+      }
+    }
+
+    let layer = null;
+    fetch(GEOJSON_FILE)
+      .then(r=>r.json())
+      .then(data => {
+        layer = L.geoJSON(data,{
+          style:styleFeature,
+          onEachFeature:(f,l)=>{
+            l.on('click',()=>showProperties(f.properties));
+            l.on('mouseover',()=>l.setStyle({weight:4}));
+            l.on('mouseout',()=>layer.resetStyle(l));
+          }
+        }).addTo(map);
+
+        try { map.fitBounds(layer.getBounds(),{padding:[20,20]}); }catch{}
+      });
+  </script>
+</body>
+</html>
+
