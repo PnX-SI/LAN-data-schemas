@@ -5,7 +5,7 @@ It is based on LAN project workshops with European partners and an alalysis of e
 [OSM](https://wiki.openstreetmap.org/wiki/Tag:boundary%3Dprotected_area), [Wikidata](https://www.wikidata.org/wiki/Q473972), [Digitize the planet](https://content.digitizetheplanet.org/en/api/docs/v2/)).
 
 To check : 
-- https://dbpedia.org/ontology/ProtectedArea
+- https://dbpedia.org/ontology/ProtectedArea >> Plutôt se concentrer sur https://www.wikidata.org/wiki/Q473972
 - https://schema.org/AdministrativeArea
 - https://developers.google.com/earth-engine/datasets/catalog/WCMC_WDPA_current_points?hl=fr#table-schema
 
