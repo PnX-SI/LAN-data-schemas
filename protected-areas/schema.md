@@ -7,6 +7,7 @@
 | name_fr        | string  |         | no        | Official name of the protected area                                              |
 | geometry       | string  | wkt ?   | yes       | geometry of the protected area (srid 4326, geojson/wkt)                          |
 | type           | string  |         | yes       | Type code of the protected area (national park, regional park, ...)              |
+| IUCN_category  | string  |         | no        | IUCN protected area categories             |
 | description    | string  |         | no        | Free text (default value)                                                        |
 | description_en | string  |         | no        | Free text in English. Other languages can be added                               |
 | description_sl | string  |         | no        | Free text                                                                        |
