@@ -1,22 +1,17 @@
-| Attributes     | Types   | Formats | Mandatory | Descriptions                                                                     |
-|----------------|---------|---------|-----------|----------------------------------------------------------------------------------|
-| name           | string  |         | yes       | Official name of the protected area (default value)                              |
-| name_en        | string  |         | no        | Official name of the protected area in English. Other languages can be added.    |
-| name_sl        | string  |         | no        | Official name of the protected area                                              |
-| name_de        | string  |         | no        | Official name of the protected area                                              |
-| name_fr        | string  |         | no        | Official name of the protected area                                              |
-| geometry       | string  | wkt ?   | yes       | geometry of the protected area (srid 4326, geojson/wkt)                          |
-| type           | string  |         | yes       | Type code of the protected area (national park, regional park, ...)              |
-| description    | string  |         | no        | Free text (default value)                                                        |
-| description_en | string  |         | no        | Free text in English. Other languages can be added                               |
-| description_sl | string  |         | no        | Free text                                                                        |
-| description_de | string  |         | no        | Free text                                                                        |
-| description_fr | string  |         | no        | Free text                                                                        |
-| country        | string  |         | no        | Country of the protected area / ISO 3166                                         |
-| url-website    | string  | url     | no        | Link to the protected area website                                               |
-| url-logo       | string  | url     | no        | Link to the logo of the national park                                            |
-| source         | string  |         | no        | Source of the protected area data                                                |
-| uuid           | string  | uuid    | no        | Uuid of the protected area (from source DB : DTP, Geotrek, INPN...)              |
-| wikidata-id    | string  |         | no        | ID in wikidata                                                                   |
-| wdpa-id        | integer |         | no        | ID in WDPA                                                                       |
-| osm-id         | integer |         | no        | ID in OpenStreetMap                                                              |
+| **Attributes**                                                                 | **Types** | **Mandatory** | **Descriptions**                                                           |
+|--------------------------------------------------------------------------------|-----------|---------------|----------------------------------------------------------------------------|
+| **name**                                                                       | string    | yes           | Protected area official name (default value)                               |
+| **name-en name-sl name-de name-fr names-it**                                   | string    | no            | Protected area official name (multilingual). Other languages can be added. |
+| **geometry**                                                                   | geom      | yes           | Protected area geometry (srid 4326, geojson/wkt)                           |
+| **type**                                                                       | string    | yes           | Protected area type code (national park, regional park, ...)               |
+| **IUCN-category**                                                              | string    | no            | Protected area IUCN category                                               |
+| **description**                                                                | string    | no            | Protected area general  description                                        |
+| **description-en description-sl description-de description-fr description-it** | string    | no            | Protected area general description (multilingual)                          |
+| **country**                                                                    | string    | no            | Protected area country / ISO 3166                                          |
+| **url-website**                                                                | string    | no            | Link to the protected area website                                         |
+| **url-logo**                                                                   | string    | no            | Link to the logo of the protected area                                     |
+| **source**                                                                     | string    | no            | Source of the protected area data                                          |
+| **pa-uuid**                                                                    | string    | yes           | Protected area UUID (from source DB : DTP, Geotrek, INPN...)               |
+| **wikidata-id**                                                                | string    | no            | ID in wikidata                                                             |
+| **wdpa-id**                                                                    | integer   | no            | ID in WDPA                                                                 |
+| **osm-id**                                                                     | integer   | no            | ID in OpenStreetMap                                                        |
