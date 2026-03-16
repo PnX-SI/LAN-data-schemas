@@ -1,13 +1,17 @@
-| **Attributes**      | **Types** | **Formats** | **Mandatory** | **Descriptions**                                                    |
-| ------------------- | --------- | ----------- | ------------- | ------------------------------------------------------------------- |
-| protected area name | string    |             | no            | Official name of the protected area                                 |
-| protected area uuid | string    |             | yes           | UUID of the protected area (from source DB : DTP, Geotrek, INPN...) |
-| activity            | string    |             | yes           | Nature based activity (defined list)                                |
-| permission          | string    |             | yes           | Authorised / Not authorised / Authorised under certains conditions  |
-| period-condition    | string    |             | no            | Activity allowed during certain period of the year / day            |
-| geom-condition      |           |             | no            | Activity allowed on certain area of the protected area              |
-| other condition     | string    |             | no            | Free text ...                                                       |
-| uuid                | string    |             |               | UUID of the rule                                                    |
-| description         | string    |             | no            | Free text                                                           |
-| url-pictogram       | string    | url         | no            | Link to pictogram(s) of the activity and permission                 |
-| url-rules           | string    | url         | no            | Link to the official protected area rules                           |
+| **Attributes**          | **Types** | **Mandatory** | **Descriptions**                                                      |
+|-------------------------|-----------|---------------|-----------------------------------------------------------------------|
+| **protected-area-name** | string    | no            | Protected area official name                                          |
+| **protected-area-uuid** | string    | yes           | Protected area UUID (from source DB : DTP, Geotrek, INPN...)          |
+| **activity**            | string    | yes           | Nature based activity (defined list)                                  |
+| **permission**          | string    | yes           | Allowed / allowed under certains conditions / forbidden               |
+| **period-condition**    | string    | no            | Periods when the activity is allowed (seasonal or daily restrictions) |
+| **geom-condition**      | geom      | no            | Areas within the protected area where the activity is allowed         |
+| **other-condition**     | string    | no            | Description of additional conditions                                  |
+| **pa-rule-uuid**        | string    | no            | Protected area rule UUID                                              |
+| **description**         | string    | no            | General description (multilingual)                                    |
+| **url-pictogram**       | string    | no            | Link to pictogram(s) of the activity and permission                   |
+| **url-rules**           | string    | no            | Link to the official protected area rules                             |
+| **pa-uuid**             | string    | yes           | Protected area UUID (from source DB : DTP, Geotrek, INPN...)          |
+| **wikidata-id**         | string    | no            | ID in wikidata                                                        |
+| **wdpa-id**             | integer   | no            | ID in WDPA                                                            |
+| **osm-id**              | integer   | no            | ID in OpenStreetMap                                                   |
