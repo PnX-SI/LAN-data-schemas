@@ -11,7 +11,3 @@
 | **description**         | string    | no            | General description (multilingual)                                    |
 | **url-pictogram**       | string    | no            | Link to pictogram(s) of the activity and permission                   |
 | **url-rules**           | string    | no            | Link to the official protected area rules                             |
-| **pa-uuid**             | string    | yes           | Protected area UUID (from source DB : DTP, Geotrek, INPN...)          |
-| **wikidata-id**         | string    | no            | ID in wikidata                                                        |
-| **wdpa-id**             | integer   | no            | ID in WDPA                                                            |
-| **osm-id**              | integer   | no            | ID in OpenStreetMap                                                   |
