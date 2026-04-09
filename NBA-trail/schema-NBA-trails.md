@@ -18,3 +18,16 @@
 | **OSM-id**                | integer   | no            | Trail OpenStreetMapid                                            |
 | **url-picture**           | string    | no            | Trail main illustration                                          |
 | **source**                | string    | no            | Trail data source of information                                 |
+
+
+As part of the work on the data standard for nature based activities, an extension of this schema has been considered in order to integrate the concept of a **BREATHE score index**. The objective is not to challenge the proposed standard structure, but to supplement it in a manner that is consistent and interoperable with several criteria (strength, endurance, immune system, mental health, social health).
+
+
+| Attributes            | Types   | Mandatory | Descriptions                                                              |
+|-----------------------|---------|-----------|---------------------------------------------------------------------------|
+| trail-uuid            | string  | yes       | Trail UUID                                                                |
+| breathe-strength      | integer | yes       | Refers to the path and possible places along the way                      |
+| breathe-endurance     | integer | yes       | Refers only to the path                                                   |
+| breathe-immune-system | integer | yes       | Refers to the path and the immediate surroundings                         |
+| breathe-mental-health | integer | yes       | Refers to the view, sound and impression from the path into the landscape |
+| breathe-social-health | integer | yes       | Refers to the path, the wayside, and the view from the path               |
