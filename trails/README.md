@@ -1,0 +1,5 @@
+The nature based activity data schema allows to harmonise the way basic information about **trails** are published and shared.
+
+We define a trail as a defined path through a natural environment, intended for outdoor activities such as hiking, walking, cycling or horseback riding. It follows a continuous route with a clear starting point and an endpoint, which may either be the same location (a loop) or two different locations (point-to-point). Trails provide an identifiable and structured way to move through protected areas along a continuous course. The concept of a trail is implemented under different names across digital outdoor platforms, as described in these examples on digital outdoor platforms (non-exhaustive list): Outdooractive [**Route**] ; Geotrek, [**Trek**] ; AllTrails [**Trail**l] ; Komoot [**Tour**] ; Strava [**Route**] ; Wikiloc [**Trail**].
+
+The idea is to share only the minimum amount of information required by the data standard, while still keeping the data operational. In the table below, the fields name, presentation, route-instructions and recommendation are multilingual.
