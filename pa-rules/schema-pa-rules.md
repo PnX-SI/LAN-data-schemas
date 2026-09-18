@@ -3,7 +3,7 @@
 | **protected-area-name** | string    | no            | Protected area official name                                          |
 | **protected-area-uuid** | string    | yes           | Protected area UUID (from source DB : DTP, Geotrek, INPN...)          |
 | **activity**            | string    | yes           | Nature based activity (defined list)                                  |
-| **regulation-status**          | string    | yes           | Allowed / allowed under certains conditions / forbidden               |
+| **regulation-status**          | string    | yes           | Allowed / forbidden               |
 | **period-condition**    | string    | no            | Periods when the activity is allowed (seasonal or daily restrictions) |
 | **geom-condition**      | geom      | no            | Areas within the protected area where the activity is allowed         |
 | **other-condition**     | string    | no            | Description of additional conditions                                  |
