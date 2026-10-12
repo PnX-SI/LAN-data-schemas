@@ -71,7 +71,93 @@ A mapping was carried out between the activities featured in the LiveAlpsNature 
 | Quad biking                                                         | motor vehicle motorized activities       |
 | Land yachting                                                       | motor vehicle motorized activities       |
 | Motocross / Enduro                                                  | motor vehicle motorized activities       |
-
-
-
-
+| Unicycle                                                            | cycling                                  |
+| Segway / gyropod                                                    | motor vehicle motorized activities       |
+| Handbike                                                            | cycling                                  |
+| Hoverboard                                                          | motor vehicle motorized activities       |
+| Buggy                                                               | motor vehicle motorized activities       |
+| Kite mountainboarding                                               | cycling                                  |
+| Speed sail                                                          | motor vehicle motorized activities       |
+| Canoeing / kayaking                                                 | water sport water activities             |
+| Rowing                                                              | water sport water activities             |
+| Paddleboarding                                                      | water sports with swimming aids          |
+| Rafting                                                             | water sport water activities             |
+| Pedal boating                                                       | watercrafts                              |
+| Pirogue                                                             | watercrafts                              |
+| Sailing                                                             | water sport water activities             |
+| Other boating                                                       | watercrafts                              |
+| Surfing                                                             | water sport water activities             |
+| Skimboarding                                                        | water sport water activities             |
+| Kitesurfing                                                         | water sport water activities             |
+| Bodysurfing                                                         | water sport water activities             |
+| Windsurfing                                                         | water sport water activities             |
+| Bodyboarding                                                        | water sport water activities             |
+| Wingfoiling                                                         | water sport water activities             |
+| Jet ski / personal watercraft                                       | watercrafts motorized                    |
+| Water skiing                                                        | water sport water activities             |
+| Towable tube riding                                                 | water sport water activities             |
+| Wakeboarding                                                        | water sport water activities             |
+| Parasailing                                                         | water sport water activities             |
+| Motorised flyboard / surfboard                                      | watercrafts motorized                    |
+| Dog sledding                                                        | dogs                                     |
+| Snowshoeing                                                         | snowshoeing snow                         |
+| Ski touring / cross-country skiing                                  | cross-country skiing snow                |
+| Snowboarding                                                        | skiing & snowboarding snow               |
+| Telemark skiing                                                     | skiing & snowboarding snow               |
+| Downhill skiing                                                     | skiing & snowboarding snow               |
+| Snowshoe walking                                                    | snowshoeing snow                         |
+| Splitboarding                                                       | ski touring snow                         |
+| Sledging                                                            | tobbogganing/sledging snow               |
+| Ski-joring                                                          | ski touring snow                         |
+| Climbing                                                            | climbing mountain                        |
+| Via ferrata                                                         | climbing mountain                        |
+| Tree-top adventure course                                           | climbing mountain                        |
+| Mountaineering                                                      | climbing mountain                        |
+| Canyoning                                                           | climbing mountain                        |
+| Coasteering                                                         | climbing mountain                        |
+| Caving                                                              | entering the area                        |
+| Scuba diving with breathing apparatus                               | diving water                             |
+| Freediving                                                          | diving water                             |
+| Snorkelling                                                         | diving water                             |
+| Subwing                                                             | diving water                             |
+| Gliding                                                             | gliders air                              |
+| Hang gliding                                                        | gliders air                              |
+| Paragliding                                                         | paragliders air                          |
+| Hot air ballooning                                                  | ballooning air                           |
+| BASE jumping / wingsuit flying                                      | base-jumping mountain                    |
+| Light aviation                                                      | air sport                                |
+| Helicopter flights                                                  | air sport                                |
+| Skydiving                                                           | air sport                                |
+| Microlight / gyroplane                                              | ultralight pilots air                    |
+| Powered paragliding                                                 | paragliders air                          |
+| Swimming / bathing                                                  | swiming                                  |
+| Aquagym                                                             | swiming                                  |
+| Yoga                                                                | camping stay                             |
+| Meditation                                                          | camping stay                             |
+| Sophrology                                                          | camping stay                             |
+| Forest bathing                                                      | camping stay                             |
+| Sensory trail                                                       | path entry behavior                      |
+| Camping or bivouac with shelter                                     | camping/bivouc stay                      |
+| Caravanning / motorhome / van camping                               | camping (vehicle/trailer)                |
+| Relaxing outdoors                                                   | camping stay                             |
+| Bivouac without shelter                                             | camping/bivouc stay                      |
+| Picnic                                                              | camping stay                             |
+| Drone flying                                                        | drones/model planes air                  |
+| Aeromodelling                                                       | drones/model planes air                  |
+| Remote-controlled boat                                              | water sport water activities             |
+| Picking plants                                                      | collecting plants                        |
+| Collecting animals or animal parts                                  | collecting plants                        |
+| Collecting fossils and minerals                                     | collecting minerals/fossils              |
+| Racket sports                                                       | noise                                    |
+| Ball games                                                          | noise                                    |
+| Throwing and boules games                                           | noise                                    |
+| Kite flying                                                         | air sport                                |
+| Other games and leisure activities with accessories                 | climbing mountain                        |
+| Orienteering                                                        | entering off the beaten                  |
+| Geocaching                                                          | entering off the beaten                  |
+| Treasure hunt and trail games                                       | path entry behavior                      |
+| Escape game                                                         | entering the area                        |
+| Triathlon                                                           | water sport water activities             |
+| Swimrun                                                             | water sport water activities             |
+| Aquathlon                                                           | water sport water activities             |
+|                                                                     |                                          |
