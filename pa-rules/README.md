@@ -58,8 +58,6 @@ A mapping was carried out between the activities featured in the LiveAlpsNature 
 |---------------------------------------------------------------------|------------------------------------------|
 | Hiking                                                              | climbing mountain                        |
 | Walking with pets (excluding horses)                                | dogs                                     |
-| Trail running / running                                             | climbing mountain                        |
-| Nordic walking                                                      | climbing mountain                        |
 | Canicross                                                           | dogs                                     |
 | Horse riding trekking                                               | horse riding                             |
 | Horse-drawn carriage driving                                        | harness vehicles horse riding activities |
